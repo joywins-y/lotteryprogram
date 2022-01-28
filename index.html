@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="description" content="年会抽奖程序" />
-    <title>年会抽奖</title>
+    <meta name="description" content="抽奖程序" />
+    <title>抽奖程序</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/reset.css" />
     <link
@@ -16,7 +16,7 @@
     <script type="text/javascript" src="js/tagcanvas.min.js"></script>
     <script src="js/vue.min.js"></script>
     <script src="js/element-ui@2.4.11/lib/index.js"></script>
-    <script src="js/member.js"></script>
+    <script src="js/prize.js"></script>
   </head>
   <body>
     <div id="app" class="bg">
@@ -50,7 +50,7 @@
       </div>
       <div id="tags">
         <ul>
-          <li v-for="(tag, index) in members" :key="index">
+          <li v-for="(tag, index) in prizes" :key="index">
             <a href="#" target="_blank">{{ tag.name }}</a>
           </li>
         </ul>
@@ -90,7 +90,7 @@
           result: [],
           players: [],
           batchPlayers: [],
-          members: [],
+          prizes: [],
         },
         watch: {
           currentAward: function() {
@@ -151,7 +151,7 @@
             }
             // 
             // if (this.players.length === 0) {
-            //   this.players = this.copy(this.members);
+            //   this.players = this.copy(this.prizes);
             //   this.$alert('所有人员都已中奖，剩余奖品将在现场所有人里抽取', '提示')
             // }
             this.batchPlayers = batchPlayers;
@@ -221,7 +221,7 @@
           onKick: function(player) {
             var vm = this;
             var index = vm.result[vm.currentAward].indexOf(player);
-            this.$confirm('去掉后可继续抽一名', '去掉这名中奖者吗？', {
+            this.$confirm('去掉后可继续抽一个', '去掉这个奖品吗？', {
               confirmButtonText: '确定',
               cancelButtonText: '取消',
               type: 'warning',
@@ -261,9 +261,9 @@
           console.log(this.rewards);
         },
         mounted: function() {
-          var members = JSON.parse(localStorage.getItem('members')) || window.members;
-          this.players = JSON.parse(localStorage.getItem('players')) || members;
-          this.members = this.copy(members);
+          var prizes = JSON.parse(localStorage.getItem('prizes')) || window.prizes;
+          this.players = JSON.parse(localStorage.getItem('players')) || prizes;
+          this.prizes = this.copy(prizes);
           localStorage.setItem('players', JSON.stringify(this.players));
           var canvas = this.$refs.canvas;
           canvas.width = document.body.offsetWidth;

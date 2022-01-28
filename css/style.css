@@ -3,10 +3,10 @@ body {
   height: 100%;
 }
 .bg {
-  background-image: url(../img/bg.jpg);
+  background-image: url(../img/hu.jpeg);
   overflow: hidden;
   background-color: #121936;
-  background-size: 100% 100% ;
+  background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -92,3 +92,7 @@ a {
   justify-content: space-between;
 }
 
+#myCanvasContainer{
+  display: flex;
+  justify-content: center;
+}

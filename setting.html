@@ -13,7 +13,7 @@
     <script src="js/polyfill.min.js"></script>
     <script src="js/vue.min.js"></script>
     <script src="js/element-ui@2.4.11/lib/index.js"></script>
-    <script src="js/member.js"></script>
+    <script src="js/prize.js"></script>
     <style>
       .el-input {
         width: 120px;
@@ -25,7 +25,7 @@
         cursor: initial;
       }
       .awards,
-      .members {
+      .prizes {
         width: 80%;
         margin: auto;
         margin-top: 50px;
@@ -99,10 +99,10 @@
           v-show="tableData.length===0"
           >增加</el-button
         >
-        <span>每个奖项每次抽取人数：</span>
+        <span>每个奖项每次抽取奖品数量：</span>
         <el-select size="small" v-model="batchNumber" @change="onChange">
           <el-option
-            v-for="index in 20"
+            v-for="index in 5"
             :key="index"
             :label="index"
             :value="index"
@@ -113,14 +113,14 @@
         >
         <a href="./index.html">去抽奖</a>
       </div>
-      <div class="members">
-        <h1>参与人员列表(共{{memberSource.length}}人)</h1>
-        <el-table :data="memberSource" style="width: 100%" stripe>
+      <div class="prizes">
+        <h1>奖品列表(共{{prizeSource.length}})</h1>
+        <el-table :data="prizeSource" style="width: 100%" stripe>
           <el-table-column
             :prop="item.prop"
             :label="item.label"
             width="180"
-            v-for="(item, index) in memberColumns"
+            v-for="(item, index) in prizeColumns"
             :key="index"
           >
             <template slot-scope="scope">
@@ -145,14 +145,14 @@
             <template slot-scope="scope">
               <el-button
                 size="small"
-                @click="onRemoveMember(scope.row, scope.$index)"
+                @click="onRemovePrize(scope.row, scope.$index)"
                 type="danger"
                 >删除</el-button
               >
             </template>
           </el-table-column>
         </el-table>
-        <el-button size="small" @click="onAddMember" type="primary"
+        <el-button size="small" @click="onAddPrize" type="primary"
           >增加</el-button
         >
         <el-button size="small" type="warning" @click="onImport">重置</el-button>
@@ -163,7 +163,7 @@
         el: '#app',
         data: {
           dialogVisible: false,
-          batchNumber: 20,
+          batchNumber: 5,
           columns: [
             {
               prop: 'name',
@@ -173,12 +173,12 @@
               prop: 'count',
               label: '数量',
             },
-            {
-              prop: 'award',
-              label: '奖品',
-            },
+            // {
+            //   prop: 'award',
+            //   label: '奖品',
+            // },
           ],
-          memberColumns: [
+          prizeColumns: [
             {
               prop: 'name',
               label: '姓名',
@@ -200,7 +200,7 @@
               editing: {},
             },
           ],
-          memberSource: [],
+          prizeSource: [],
         },
         computed: {
           awards: function() {
@@ -216,8 +216,8 @@
                 };
               });
           },
-          members: function() {
-            return this.memberSource
+          prizes: function() {
+            return this.prizeSource
               .filter(function(item) {
                 return item.name && item.id;
               })
@@ -273,21 +273,21 @@
             this.tableData.splice(index, 1);
             this.saveData();
           },
-          onAddMember: function() {
-            this.memberSource.push({
+          onAddPrize: function() {
+            this.prizeSource.push({
               editing: {
                 name: true,
               },
             });
           },
-          onRemoveMember: function(row, index) {
+          onRemovePrize: function(row, index) {
             var vm = this;
             this.$confirm('删除不可撤销！可重新添加', '确定删除吗？', {
               confirmButtonText: '确定',
               cancelButtonText: '取消',
               type: 'warning',
             }).then(function() {
-              vm.memberSource.splice(index, 1);
+              vm.prizeSource.splice(index, 1);
               vm.saveData();
             });
           },
@@ -298,7 +298,7 @@
               cancelButtonText: '取消',
               type: 'warning',
             }).then(function() {
-              vm.memberSource = window.members.map(function(item) {
+              vm.prizeSource = window.prizes.map(function(item) {
                 return {
                   name: item.name,
                   id: item.id,
@@ -310,7 +310,7 @@
           },
           saveData: function() {
             localStorage.setItem('awards', JSON.stringify(this.awards));
-            localStorage.setItem('members', JSON.stringify(this.members));
+            localStorage.setItem('prizes', JSON.stringify(this.prizes));
             localStorage.setItem(
               'batchNumber',
               JSON.stringify(this.batchNumber)
@@ -335,8 +335,8 @@
               count: 1,
             },
           ];
-          var members =
-            JSON.parse(localStorage.getItem('members')) || window.members;
+          var prizes =
+            JSON.parse(localStorage.getItem('prizes')) || window.prizes;
           this.batchNumber = +localStorage.getItem('batchNumber') || 20;
           this.tableData = awards.map(function(item) {
             return {
@@ -346,7 +346,7 @@
               editing: {},
             };
           });
-          this.memberSource = members.map(function(item) {
+          this.prizeSource = prizes.map(function(item) {
             return {
               name: item.name,
               id: item.id,

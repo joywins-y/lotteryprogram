@@ -1,15 +1,15 @@
-window.members = [
+window.prizes = [
   {
     "id": 1,
-    "name": "闵觅珍"
+    "name": "666现金红包"
   },
   {
     "id": 2,
-    "name": "慈新之"
+    "name": "n现金红包"
   },
   {
     "id": 3,
-    "name": "户柔绚"
+    "name": "珂润洗面奶"
   },
   {
     "id": 4,
@@ -165,7 +165,7 @@ window.members = [
   },
   {
     "id": 42,
-    "name": "蓝亦竹"
+    "name": "东野圭吾小说"
   },
   {
     "id": 43,
@@ -173,7 +173,7 @@ window.members = [
   },
   {
     "id": 44,
-    "name": "刚孤风"
+    "name": "花知晓口红"
   },
   {
     "id": 45,
@@ -273,7 +273,7 @@ window.members = [
   },
   {
     "id": 69,
-    "name": "佟嘉德"
+    "name": "skg按摩仪"
   },
   {
     "id": 70,
@@ -281,7 +281,7 @@ window.members = [
   },
   {
     "id": 71,
-    "name": "改昊昊"
+    "name": "车厘子"
   },
   {
     "id": 72,
@@ -309,7 +309,7 @@ window.members = [
   },
   {
     "id": 78,
-    "name": "丁秋玉"
+    "name": "视频会员年卡"
   },
   {
     "id": 79,
@@ -333,19 +333,19 @@ window.members = [
   },
   {
     "id": 84,
-    "name": "澄慧丽"
+    "name": "拍立得"
   },
   {
     "id": 85,
-    "name": "佼清秋"
+    "name": "故宫火漆印章"
   },
   {
     "id": 86,
-    "name": "缪荌荌"
+    "name": "泡泡玛特盲盒"
   },
   {
     "id": 87,
-    "name": "闻人幼丝"
+    "name": "奈雪一周好茶"
   },
   {
     "id": 88,
